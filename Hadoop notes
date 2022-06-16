@@ -1,0 +1,45 @@
+lECTURE 4
+
+usr/local/bin -> contains all program files here we keep the hadoop folder
+
+Inside it of the hadoop folder the 
+
+usr/local/bin/hadoop/etc/- contains the config files, contains  xml files , also contains where meta data whill be stored if you dont mention the folder where you want to store meta data then it will be stored in temp folder and as soon as you close the OS and again open it then hadoop will not start
+usr/local/bin/hadoop/sbin/- contains all shell script
+usr/local/bin/hadoop/bin/-  contains hadoop executable
+
+
+
+etc/hadoop/core-site.xml -> contains the port number being used by Hadoop 
+etc/hadoop/hdfs-site.xml -> tells the replication value
+etc/hadoop/mapred.xml ->
+etc/hadoop/yarn-site.xml ->
+
+Hadoop was written in java . jps command is used to know all java running processes
+
+Start Hadoop
+-----------
+go inside sbin folder and run start-all.sh to start all the daemons
+
+If hadooop was running run jps command to see NameNode is running or not (if its then hadoop is running) , single node cluster is when all is running on one system
+NameNode contains meta data
+File are divided into small parts called blocks , these blocks are kept in Datanodes 
+SecondaryNamenode ae replication of Namenode if namenode fails it uses secondary as primaryNamenode
+
+For web check of Namenode go to --> localhost:5070
+hadoop contains files, mongodb contained documents
+hadoop is not a database it contains 4 core modules
+
+
+ 
+ First write file in hdfs
+ -------------------------
+ go inside bin folder
+ hadoop fs -mkdir -p /june16/ebooks
+ 
+ If a file is over 128MB it is divided into various blocks in the Datanode
+ 
+
+
+
+
