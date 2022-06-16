@@ -24,7 +24,8 @@ go inside sbin folder and run start-all.sh to start all the daemons
 If hadooop was running run jps command to see NameNode is running or not (if its then hadoop is running) , single node cluster is when all is running on one system
 NameNode contains meta data
 File are divided into small parts called blocks , these blocks are kept in Datanodes 
-SecondaryNamenode ae replication of Namenode if namenode fails it uses secondary as primaryNamenode
+SecondaryNamenode ae replication of Namenode if namenode fails it can use secondary  metadata as for making new Node . Secondary gets meta data from namenode every hour.
+It 
 
 For web check of Namenode go to --> localhost:5070
 hadoop contains files, mongodb contained documents
@@ -39,7 +40,31 @@ hadoop is not a database it contains 4 core modules
  
  If a file is over 128MB it is divided into various blocks in the Datanode
  
+NameNode
+---------
+The client breaks file into blocks
+For each block, the client consult Name Node(usually TCP port 9000) and recieves a list of Data Nodes that should have copy of this blick
+ The client writes block directly to the Data Node (usually tcp 50010)
+ The recieving DataNode replicates the block to other Data Nodes,and cycle continues for other block
+ The Namenode only provides the map of where data is and where data should go in cluster 
+ 
+ Hadoop Rack Awareness
+ ---------------
+ Replicate data in other nearby racks rather than same racks
+ Racks is higher bandwidth and low latency
+ 
+ 
+ Data Node sends Heartbeats
+ Every 10th heartbeat is a block report
+ Name Node builds metadata from block reports
+ TCP-evry 3 seconds
+ If NameNode is down, HDFS is down
+ 
+Misiing heartbeats signify lost Nodes
+Name Node consult metadata,finds affected data. Name Node consults Rack awareness script. Name Node tells a Datanode to re-replicate
 
+Clinet recieves Data Node list for each block.
+Client picks first Data Node for each list.
 
 
 
