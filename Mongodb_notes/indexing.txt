@@ -1,0 +1,4 @@
+Indexing and query optimization
+
+Indexes are enormously important. With the right indexes in place, MongoDB can use its hardware efficiently and serve your application’s queries quickly. But the wrong indexes produce the opposite result: slow queries, slow writes, and poorly utilized hardware. It stands to reason that anyone wanting to use MongoDB effectively must understand indexing.
+
