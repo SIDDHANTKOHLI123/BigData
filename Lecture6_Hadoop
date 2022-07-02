@@ -1,0 +1,16 @@
+File system browser for hadoop - localhost:50070
+
+The input data is divied into blocks(if the file size is big enough {128MB} to get divided into blocks ) . Each block will be saved in dataNode from where it will be replicated . In each Datanode there is a daemon called TaskTracker . Split is the logical division of file . Split is running on MAPPER . Number of mapper depends on number of Split
+
+InputSplit --> Input Format(check file input type) --> Mappper --> Shuffer & Sort --> Partinioner (decided which key goes to which reducer) --> Reducer -->OutputFormat --->HDFS (output will come to HDFS)
+
+InputSplit represents the data to be processed by an individual Mapper.
+
+InputFormat describes the input-specification for a Map-Reduce job.
+The Map-Reduce framework relies on the InputFormat of the job to:
+
+Validate the input-specification of the job.
+Split-up the input file(s) into logical InputSplits, each of which is then assigned to an individual Mapper.
+Provide the RecordReader implementation to be used to glean input records from the logical InputSplit for processing by the Mapper.
+
+An InputFormat for plain text files. Files are broken into lines. Either linefeed or carriage-return are used to signal end of line. Keys are the position in the file, and values are the line of text..
